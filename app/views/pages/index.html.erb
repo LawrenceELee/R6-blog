@@ -1,0 +1,10 @@
+<h1>Blog Pages</h1>
+
+<% @pages.each do |page| %>
+  <p><%= page.title %></p>
+<% end %>
+
+<% grade = 97 %>
+<% if grade > 60 %>
+  You passed!
+<% end %>
