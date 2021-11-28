@@ -8,5 +8,15 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
   end
 
+  def new
+    @page = Page.new
+  end
+
+  def create
+    @page = Page.new(params)
+    render plain: params.to_json
+  end
+
+
 
 end
