@@ -1,11 +1,11 @@
 class PagesController < ApplicationController
+  before_action :set_page, only: [:show, :edit, :update, :destroy]
 
   def index
     @pages = Page.all
   end
 
   def show
-    @page = Page.find(params[:id])
   end
 
   def new
@@ -28,13 +28,11 @@ class PagesController < ApplicationController
   end
 
   def edit
-    @page = Page.find(params[:id])
   end
 
   def update
 
     # find the model data
-    @page = Page.find(params[:id])
 
     # line was remove and refactored into page_params method
 
@@ -46,7 +44,6 @@ class PagesController < ApplicationController
   end
 
   def destroy
-    @page = Page.find(params[:id])
     @page.destroy
 
     # redirect to the pages_path method (pages_path is not a variable)
@@ -62,6 +59,12 @@ class PagesController < ApplicationController
       # refactor code.
       # page_prams is repeated in update and create
       page_params = params.require(:page).permit(:title, :body, :slug)
+    end
+
+
+    # refactor repeated code into its own method
+    def set_page
+      @page = Page.find(params[:id])
     end
 
 end
